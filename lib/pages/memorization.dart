@@ -25,7 +25,6 @@ class _MemorizationPageState extends State<MemorizationPage> {
     if(docIdAndOrderAndType[1] == '랜덤'){
       initializeMemo.setRandomTrue();
     }
-    print(initializeMemo.type);
 
 
     return Scaffold(
@@ -95,7 +94,6 @@ class _ShowProblemState extends State<ShowProblem> {
                     final flashcards = snapshot.data;
                     frontTextController.text = flashcards[widget.memo.idx]['front'];
                     backTextController.text = "";
-                    print(widget.memo.idx);
 
                     return ListView(
                       children: [
@@ -178,7 +176,6 @@ class _ShowProblemState extends State<ShowProblem> {
 
                     frontTextController.text = flashcards[widget.memo.idx]['front'];
                     backTextController.text = flashcards[widget.memo.idx]['back'];
-                    print(widget.memo.idx);
                     List<String> problemList = widget.memo.getProblemList(widget.memo.idx);
 
 

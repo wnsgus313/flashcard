@@ -210,7 +210,7 @@ class _GridFlashcardState extends State<GridFlashcard> {
                 card: flashcard,
                 child: Text(
                   flashcard.front,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.bodyText1,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -218,7 +218,7 @@ class _GridFlashcardState extends State<GridFlashcard> {
                 card: flashcard,
                 child: Text(
                   flashcard.back,
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.bodyText1,
                   textAlign: TextAlign.center,
                 ),
               ),

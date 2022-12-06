@@ -1,7 +1,9 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../models/folder.dart';
+import '../utils/mlkit_util/text_detector_view.dart';
 import '../utils/page_creater.dart';
 
 
@@ -19,8 +21,6 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
 
     TextEditingController frontTextController = TextEditingController();
     TextEditingController backTextController = TextEditingController();
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -45,10 +45,13 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
       ),
       body: ListView(
         children: [
+          TextRecognizerView(textController: frontTextController),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 18),
             child: PageCreator.makeCircularTextField(context: context, controller: frontTextController, placeholder: '문제'),
           ),
+          const Divider(height: 20, thickness: 2,),
+          TextRecognizerView(textController: backTextController),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 18),
             child: PageCreator.makeCircularTextField(context: context, controller: backTextController, placeholder: '답'),
