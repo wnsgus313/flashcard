@@ -40,7 +40,6 @@ dependencies:
   firebase_auth: ^4.1.2
   cloud_firestore: ^4.0.5
   provider: ^6.0.4
-  firebase_ui_auth: ^1.0.5
   path_provider: ^2.0.11
   google_sign_in: ^5.4.2
   modal_bottom_sheet: ^2.1.2
@@ -49,6 +48,9 @@ dependencies:
   camera: ^0.10.0+4
   path: ^1.8.2
   google_mlkit_text_recognition: ^0.5.0
+  auto_size_text: ^3.0.0
+  file_picker: ^5.2.3
+  excel: ^2.0.0-null-safety-3
 
 dev_dependencies:
   flutter_test:

@@ -4,6 +4,7 @@ import 'package:flashcard/pages/home.dart';
 import 'package:flashcard/pages/login.dart';
 import 'package:flashcard/pages/memorization.dart';
 import 'package:flashcard/pages/option.dart';
+import 'package:flashcard/pages/setting.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/addFlashcard': (BuildContext context) => const AddFlashcardPage(),
         '/memorization': (BuildContext context) => const MemorizationPage(),
         '/option': (BuildContext context) => const OptionPage(),
+        '/setting': (BuildContext context) => const SettingPage(),
       },
     );
   }

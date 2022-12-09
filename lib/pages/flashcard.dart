@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flashcard/models/flashcard.dart';
 import 'package:flip_card/flip_card.dart';
@@ -208,17 +209,23 @@ class _GridFlashcardState extends State<GridFlashcard> {
             return FlipCard(
               front: RoundedFlashcard(
                 card: flashcard,
-                child: Text(
-                  flashcard.front,
-                  style: Theme.of(context).textTheme.bodyText1,
-                  textAlign: TextAlign.center,
+                child: Column(
+                  children: [
+                    AutoSizeText(
+                      flashcard.front,
+                      style: const TextStyle(fontSize: 18),
+                      maxLines: 8,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ),
               back: RoundedFlashcard(
                 card: flashcard,
-                child: Text(
+                child: AutoSizeText(
                   flashcard.back,
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: const TextStyle(fontSize: 18),
+                  maxLines: 8,
                   textAlign: TextAlign.center,
                 ),
               ),

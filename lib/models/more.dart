@@ -1,0 +1,1 @@
+enum More { edit, delete }
