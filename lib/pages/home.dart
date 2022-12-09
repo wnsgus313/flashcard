@@ -92,6 +92,7 @@ class _TopicListWidgetState extends State<TopicListWidget> {
         .collection('folders')
         .doc(uid)
         .collection('info');
+
     final Stream<QuerySnapshot> folders = database.snapshots();
 
     return StreamBuilder<QuerySnapshot>(
@@ -235,7 +236,8 @@ class _TopicListWidgetState extends State<TopicListWidget> {
                             value: More.delete,
                             child: Text('삭제'),
                           ),
-                        ]),
+                        ],
+                ),
                 onTap: () {
                   Folder folderM = Folder(id: folder.id);
                   log(folder.id);

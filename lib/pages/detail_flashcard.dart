@@ -1,45 +1,48 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flashcard/models/flashcard.dart';
 import 'package:flutter/material.dart';
 
-import '../models/folder.dart';
 import '../utils/mlkit_util/text_detector_view.dart';
 import '../utils/text_field.dart';
 
-
-class AddFlashcardPage extends StatefulWidget {
-  const AddFlashcardPage({Key? key}) : super(key: key);
+class DetailPage extends StatefulWidget {
+  const DetailPage({Key? key}) : super(key: key);
 
   @override
-  State<AddFlashcardPage> createState() => _AddFlashcardPageState();
+  State<DetailPage> createState() => _DetailPageState();
 }
 
-class _AddFlashcardPageState extends State<AddFlashcardPage> {
+class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
-    final folder = ModalRoute.of(context)!.settings.arguments as Folder;
+    final flashcard = ModalRoute.of(context)!.settings.arguments as Flashcard;
 
     TextEditingController frontTextController = TextEditingController();
     TextEditingController backTextController = TextEditingController();
+    frontTextController.text = flashcard.front;
+    backTextController.text = flashcard.back;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("카드 추가"),
         centerTitle: true,
         actions: [
-          TextButton(
+          IconButton(
             onPressed: () async {
-              FirebaseFirestore.instance.collection('flashcards').doc(folder.id).collection('info').add({
+              FirebaseFirestore.instance.collection('flashcards').doc(flashcard.folderId).collection('info').doc(flashcard.id).update({
                 'front': frontTextController.text,
                 'back': backTextController.text,
-                'cdate': FieldValue.serverTimestamp(),
                 'udate': FieldValue.serverTimestamp(),
               });
 
-              frontTextController.clear();
-              backTextController.clear();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('저장되었습니다!'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
             },
-            child: const Text('Done'),
+            icon: const Icon(Icons.edit),
           ),
         ],
       ),
@@ -61,4 +64,3 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
     );
   }
 }
-

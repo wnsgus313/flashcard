@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PageCreator{
+class CircularTextField{
   // 둥근 Textfield Widget.
   static Widget makeCircularTextField({required BuildContext context, required TextEditingController? controller, required String placeholder, int minLines = 8}) {
     return TextField(

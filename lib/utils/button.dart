@@ -24,7 +24,7 @@ class _Choose4ButtonState extends State<Choose4Button> {
   Widget build(BuildContext context) {
     return MaterialButton(
       minWidth: 150.0,
-      color: Theme.of(context).secondaryHeaderColor,
+      color: const Color(0xFFECEBEE),
       onPressed: () {
         if(widget.problem == widget.answer) {
           widget.memo.setIdx((widget.memo.idx + 1) % widget.memo.count);

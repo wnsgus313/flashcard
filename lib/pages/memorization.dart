@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../models/memorization.dart';
 import '../utils/button.dart';
-import '../utils/page_creater.dart';
+import '../utils/text_field.dart';
 
 class MemorizationPage extends StatefulWidget {
   const MemorizationPage({Key? key}) : super(key: key);
@@ -31,13 +31,6 @@ class _MemorizationPageState extends State<MemorizationPage> {
       appBar: AppBar(
         title: const Text('암기'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-            },
-            icon: const Icon(Icons.account_circle),
-          ),
-        ],
       ),
       body: ChangeNotifierProvider(
         create: (context) => Memorization(),
@@ -91,6 +84,12 @@ class _ShowProblemState extends State<ShowProblem> {
                     );
 
                   default:
+                    if(widget.memo.count < 1){
+                      Navigator.of(context).pop();
+
+                      return const Text('');
+                    }
+
                     final flashcards = snapshot.data;
                     frontTextController.text = flashcards[widget.memo.idx]['front'];
                     backTextController.text = "";
@@ -100,7 +99,7 @@ class _ShowProblemState extends State<ShowProblem> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                             vertical: 9, horizontal: 18),
-                          child: PageCreator.makeCircularReadOnlyTextField(
+                          child: CircularTextField.makeCircularReadOnlyTextField(
                             context: context,
                             controller: frontTextController,
                             placeholder: '',
@@ -109,7 +108,7 @@ class _ShowProblemState extends State<ShowProblem> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                             vertical: 9, horizontal: 18),
-                          child: PageCreator.makeCircularReadOnlyBackTextField(
+                          child: CircularTextField.makeCircularReadOnlyBackTextField(
                             context: context,
                             controller: backTextController,
                             placeholder: '정답 확인',
@@ -172,6 +171,12 @@ class _ShowProblemState extends State<ShowProblem> {
                     );
 
                   default:
+                    if(widget.memo.count < 4){
+                      Navigator.of(context).pop();
+
+                      return const Text('');
+                    }
+
                     final flashcards = snapshot.data;
 
                     frontTextController.text = flashcards[widget.memo.idx]['front'];
@@ -184,7 +189,7 @@ class _ShowProblemState extends State<ShowProblem> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 9, horizontal: 18),
-                          child: PageCreator.makeCircularReadOnlyTextField(
+                          child: CircularTextField.makeCircularReadOnlyTextField(
                             context: context,
                             controller: frontTextController,
                             placeholder: '',

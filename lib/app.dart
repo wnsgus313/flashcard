@@ -1,4 +1,5 @@
 import 'package:flashcard/pages/add_flashcard.dart';
+import 'package:flashcard/pages/detail_flashcard.dart';
 import 'package:flashcard/pages/flashcard.dart';
 import 'package:flashcard/pages/home.dart';
 import 'package:flashcard/pages/login.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: const Color(0xFF5B836A),
+        secondaryHeaderColor: Colors.grey,
         appBarTheme: const AppBarTheme(
           color: Color(0xFF5B836A) // 앱의// 전체 컬러를 설정
         ),
@@ -39,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/memorization': (BuildContext context) => const MemorizationPage(),
         '/option': (BuildContext context) => const OptionPage(),
         '/setting': (BuildContext context) => const SettingPage(),
+        '/detailFlashcard': (BuildContext context) => const DetailPage(),
       },
     );
   }

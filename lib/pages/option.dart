@@ -16,13 +16,6 @@ class _OptionPageState extends State<OptionPage> {
       appBar: AppBar(
         title: const Text('암기'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-            },
-            icon: const Icon(Icons.account_circle),
-          ),
-        ],
       ),
       body: SelectOptions(id: docId),
     );
