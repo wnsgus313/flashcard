@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                 if(!userInfo.isAnonymous) {
                   database.collection('user').doc(userInfo.uid).set({
                     'email': userInfo.email,
-                    'name:': userInfo.displayName,
+                    'name': userInfo.displayName,
                     'uid': userInfo.uid,
                   });
                 }

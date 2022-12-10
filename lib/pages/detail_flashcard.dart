@@ -24,7 +24,7 @@ class _DetailPageState extends State<DetailPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("카드 추가"),
+        title: const Text("카드 수정"),
         centerTitle: true,
         actions: [
           IconButton(

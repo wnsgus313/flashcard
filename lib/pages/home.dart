@@ -291,7 +291,7 @@ Widget optionBottomSheet(BuildContext context) {
     );
   }
 
-  // excel 파일만 읽는 함수
+  // excel 파일만 읽는 메서드
   Future<File?> openExcelFile() async {
     FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
         type: FileType.custom,
@@ -317,7 +317,6 @@ Widget optionBottomSheet(BuildContext context) {
             onPressed: () async {
               Navigator.pop(context);
               displayFolderNameInputDialog();
-              log('a');
             },
             icon: const Icon(Icons.create_new_folder),
             label: const Text('폴더 만들기'),

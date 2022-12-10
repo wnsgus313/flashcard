@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class OptionPage extends StatefulWidget {
@@ -11,13 +13,49 @@ class _OptionPageState extends State<OptionPage> {
   @override
   Widget build(BuildContext context) {
     final docId = ModalRoute.of(context)!.settings.arguments as String;
+    User userInfo = FirebaseAuth.instance.currentUser!;
+
+    Future getSetting() async {
+      final database = FirebaseFirestore.instance.collection('settings').doc(userInfo.uid);
+      var settings = await database.get();
+      if(!settings.exists){
+        await database.set({
+          'order': "랜덤",
+          'type': "문제/답",
+          'uid': userInfo.uid,
+        });
+        settings = await database.get();
+      }
+      return settings;
+    }
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('암기'),
         centerTitle: true,
       ),
-      body: SelectOptions(id: docId),
+      body: FutureBuilder(
+        future: getSetting(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
+          }
+    
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return const Center(
+                child: Text('Loading...'),
+              );
+
+            default:
+              final order = snapshot.data['order'] ?? '랜덤';
+              final type = snapshot.data['type'] ?? '문제/답';
+              return SelectOptions(id: docId, order: order, type: type);
+          }
+        },
+      ),
     );
   }
 }
@@ -25,9 +63,11 @@ class _OptionPageState extends State<OptionPage> {
 
 // 옵션 선택 위젯.
 class SelectOptions extends StatefulWidget {
-  const SelectOptions({Key? key, required this.id}) : super(key: key);
+  const SelectOptions({Key? key, required this.id, required this.order, required this.type}) : super(key: key);
 
   final String id;
+  final String order;
+  final String type;
   
   @override
   State<SelectOptions> createState() => _SelectOptionsState();
@@ -36,11 +76,17 @@ class SelectOptions extends StatefulWidget {
 class _SelectOptionsState extends State<SelectOptions> {
   String problemOrder = "랜덤";
   String flashcardType = "문제/답";
+  bool initialize = true;
 
   @override
   Widget build(BuildContext context) {
     final problemOrderList = ["랜덤", "최신순", "오래된순"];
     final flashcardTypeList = ["문제/답", "4지선다"];
+    if (initialize){
+      problemOrder = widget.order;
+      flashcardType = widget.type;
+      initialize = false;
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
