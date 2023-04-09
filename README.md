@@ -1,16 +1,12 @@
 # flashcard
 
-암기앱
+모바일 앱 개발 수업 개인 프로젝트(암기앱)
 
-## Getting Started
+# 사용 기술 스택
+flutter, firebase
 
-This project is a starting point for a Flutter application.
+# 초기 디자인
+https://www.figma.com/file/RpCfeoo3Yr2LFuOI9BkYQH/%EC%95%94%EA%B8%B0%EC%95%B1?node-id=0%3A1&t=j7jJDsqRnQ5J1BDU-1
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# 시연 영상
+https://youtu.be/F3jxq28t1kM
